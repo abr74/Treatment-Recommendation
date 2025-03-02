@@ -1,0 +1,113 @@
+/* Modal styles */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+    z-index: 1000; /* Ensure modal appears on top */
+    animation: fadeIn 0.3s ease-out; /* Smooth fade-in effect */
+}
+
+/* Modal content styles */
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px; /* Max width for larger screens */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center;
+    position: relative;
+    animation: slideIn 0.3s ease-out; /* Slide-in effect */
+}
+
+/* Close button styles */
+.close {
+    color: #aaa;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.close:hover,
+.close:focus {
+    color: #333; /* Darker color when hovering */
+    transform: scale(1.1); /* Slight scale effect on hover */
+}
+
+/* Modal Title */
+.modal-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Form input and button container */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Increased gap between form elements */
+    align-items: center;
+}
+
+/* Input Field */
+.input-field {
+    width: 100%;
+}
+
+/* Submit Button */
+.submit-button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 85%; /* Smaller width on mobile */
+        padding: 20px; /* Reduced padding */
+    }
+
+    .modal-title {
+        font-size: 20px; /* Smaller title font on mobile */
+    }
+
+    .close {
+        font-size: 28px; /* Smaller close button on mobile */
+    }
+
+    .submit-button {
+        font-size: 15px; /* Adjust button font size */
+    }
+}
