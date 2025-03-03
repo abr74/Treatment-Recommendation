@@ -5,18 +5,23 @@ import { useNavigate } from "react-router-dom"; // To handle navigation
 
 const DietRecommendationModal = ({ isOpen, closeModal }) => {
     const [allergies, setAllergies] = useState('');
+    const [weight, setWeight] = useState('');
+    const [height, setHeight] = useState('');
     const navigate = useNavigate(); // Hook for navigation
 
     const handleSubmit = async () => {
         // Send allergies data to backend
+        console.log(JSON.stringify({allergies}));
+
         try {
-            const response = await fetch('http://127.0.0.1:5000/storename', {
+            const response = await fetch('http://127.0.0.1:5000/query', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ allergies }), // Send allergies data
+                body: JSON.stringify({query: `I have ${ allergies } allergies. My height is ${height} cm and I weigh ${weight}. Give me a diet recommendation`}), // Send allergies data
             });
+
 
             if (response.ok) {
                 const responseData = await response.json();
@@ -49,6 +54,24 @@ const DietRecommendationModal = ({ isOpen, closeModal }) => {
                         variant="standard"
                         value={allergies}
                         onChange={(e) => setAllergies(e.target.value)}
+                        className="input-field"
+                    />
+
+                    <TextField
+                        id="weight"
+                        label="Weight"
+                        variant="standard"
+                        value={weight}
+                        onChange={(e) => setWeight(e.target.value)}
+                        className="input-field"
+                    />
+
+                    <TextField
+                        id="height"
+                        label="Height"
+                        variant="standard"
+                        value={height}
+                        onChange={(e) => setHeight(e.target.value)}
                         className="input-field"
                     />
                     <Button

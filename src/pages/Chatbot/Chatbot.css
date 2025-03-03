@@ -1,0 +1,131 @@
+/* Chatbot Page Container */
+.chatbot-container {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+}
+
+/* Heading */
+.chatbot-header {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #3a3a3a;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Scrollable Content Box */
+.content-box {
+    width: 80%;
+    max-width: 600px;
+    max-height: 400px; /* Limit height for scroll */
+    overflow-y: auto; /* Make it scrollable */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    color: #333;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+/* Loading Text */
+.loading-text {
+    font-size: 1.2rem;
+    color: #0066cc;
+    font-style: italic;
+    background-color: #e7f4ff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #0066cc;
+    box-shadow: 0 4px 10px rgba(0, 102, 204, 0.2);
+}
+
+/* Error Text */
+.error-text {
+    font-size: 1.2rem;
+    color: #e74c3c;
+    font-weight: bold;
+    font-style: italic;
+    background-color: #f8d7da;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #e74c3c;
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2);
+}
+
+/* Bold text inside `**` */
+.bold-text {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Numbers on a separate line */
+.number-line {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+/* Style for the chatbot container */
+.chatbot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Header for the Chatbot Page */
+.chatbot-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Box that holds the content */
+.content-box {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* To make the box scrollable if content overflows */
+    height: 300px; /* Fixed height for the scrollable box */
+}
+
+/* Button to navigate to the LandingPage */
+.redirect-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.redirect-button:hover {
+    background-color: #0056b3;
+}
+
+.loading-text {
+    color: gray;
+}
+
+.error-text {
+    color: red;
+}

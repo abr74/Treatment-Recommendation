@@ -27,7 +27,7 @@ const PersonalDetailsModal = ({isOpen, closeModal }) => {
         // console.log(JSON.stringify(userDetails, null, 2));
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/storename', {
+            const response = await fetch('http://127.0.0.1:5000/query', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

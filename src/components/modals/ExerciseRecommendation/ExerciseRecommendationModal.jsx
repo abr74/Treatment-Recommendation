@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import './ExerciseRecommendationModal.css';
 import { Button, TextField } from "@mui/material";
-import { useNavigate } from "react-router-dom";  // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom"; // To handle navigation
 
 const ExerciseRecommendationModal = ({ isOpen, closeModal }) => {
-
     const [goal, setGoal] = useState('');
     const [weight, setWeight] = useState('');
     const [age, setAge] = useState('');
@@ -20,12 +19,14 @@ const ExerciseRecommendationModal = ({ isOpen, closeModal }) => {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/storename', {
+            const response = await fetch('http://127.0.0.1:5000/query', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(`I am ${age} years old and weigh ${weight} pounds. My goal is to reach ${goal} pounds within ${duration} weeks. Create an exercise plan for me.`),
+                body: JSON.stringify({
+                    query: `I weigh ${weight} lbs. My goal is to be ${goal} lbs. I would like to reach it within ${duration} weeks`
+                }),
             });
 
             if (response.ok) {
@@ -34,7 +35,7 @@ const ExerciseRecommendationModal = ({ isOpen, closeModal }) => {
 
                 // Redirect to the chatbot page after form submission
                 navigate("/chatbot");
-                closeModal();  // Close the modal after submission
+                closeModal(); // Close the modal after submission
             } else {
                 console.error('Error:', response.statusText);
             }
@@ -53,7 +54,7 @@ const ExerciseRecommendationModal = ({ isOpen, closeModal }) => {
                 </span>
                 <h2 className="modal-title">Exercise Recommendation</h2>
                 <div className="modal-form">
-                    <TextField 
+                    <TextField
                         id="age"
                         label="Age"
                         variant="standard"
@@ -63,7 +64,7 @@ const ExerciseRecommendationModal = ({ isOpen, closeModal }) => {
                         helperText={isEmpty ? 'Required' : ''}
                         className="input-field"
                     />
-                    <TextField 
+                    <TextField
                         id="weight"
                         label="Current Weight"
                         variant="standard"
@@ -73,7 +74,7 @@ const ExerciseRecommendationModal = ({ isOpen, closeModal }) => {
                         helperText={isEmpty ? 'Required' : ''}
                         className="input-field"
                     />
-                    <TextField 
+                    <TextField
                         id="goal"
                         label="Weight Goal"
                         variant="standard"
@@ -83,7 +84,7 @@ const ExerciseRecommendationModal = ({ isOpen, closeModal }) => {
                         helperText={isEmpty ? 'Required' : ''}
                         className="input-field"
                     />
-                    <TextField 
+                    <TextField
                         id="duration"
                         label="Duration (Weeks)"
                         variant="standard"
@@ -93,9 +94,9 @@ const ExerciseRecommendationModal = ({ isOpen, closeModal }) => {
                         helperText={isEmpty ? 'Required' : ''}
                         className="input-field"
                     />
-                    <Button 
-                        variant="contained" 
-                        onClick={handleSubmit} 
+                    <Button
+                        variant="contained"
+                        onClick={handleSubmit}
                         className="submit-button"
                     >
                         Submit

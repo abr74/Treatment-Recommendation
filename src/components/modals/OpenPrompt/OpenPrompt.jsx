@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import './OpenPrompt.css';
 import { Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const OpenPrompt = ({ isOpen, closeModal }) => {
 
     const [question, setQuestion] = useState('');
     const [isEmpty, setIsEmpty] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async () => {
 
@@ -15,17 +17,18 @@ const OpenPrompt = ({ isOpen, closeModal }) => {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/storename', {
+            const response = await fetch('http://127.0.0.1:5000/query', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(question),
+                body: JSON.stringify({query: question}),
             });
 
             if (response.ok) {
                 const responseData = await response.json();
                 console.log('Success:', responseData);
+                navigate("/chatbot")
                 closeModal();
             } else {
                 console.error('Error:', response.statusText);

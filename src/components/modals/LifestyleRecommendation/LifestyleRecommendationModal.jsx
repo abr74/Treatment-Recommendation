@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './LifestyleRecommendationModal.css';
 import { Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const LifestyleRecommendationModal = ({ isOpen, closeModal }) => {
 
@@ -8,10 +9,11 @@ const LifestyleRecommendationModal = ({ isOpen, closeModal }) => {
     const [smoking, setSmoking] = useState('');
     const [sleep_hours, setSleep_hours] = useState('');
     const [isEmpty, setIsEmpty] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async () => {
-        const alcohol = alcoholComsumption === '' ? 'I do drink' : alcoholComsumption;
-        const smoke = smoking === '' ? 'I do not smoke' : smoking;
+        const alcohol = alcoholComsumption === '' ? 'I do drink' : `I drink ${alcoholComsumption} weekly`;
+        const smoke = smoking === '' ? 'I do not smoke' : `I smoke ${smoking} weekly`;
 
         if (sleep_hours === '') {
             setIsEmpty(true);
@@ -19,17 +21,18 @@ const LifestyleRecommendationModal = ({ isOpen, closeModal }) => {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/storename', {
+            const response = await fetch('http://127.0.0.1:5000/query', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(`${alcohol}, ${smoke}, I sleep ${sleep_hours} daily`),
+                body: JSON.stringify({query: `${alcohol}, ${smoke}, I sleep ${sleep_hours} daily. How should I improve my lifestyle`}),
             });
 
             if (response.ok) {
                 const responseData = await response.json();
                 console.log('Success:', responseData);
+                navigate("/chatbot");
                 closeModal();
             } else {
                 console.error('Error:', response.statusText);

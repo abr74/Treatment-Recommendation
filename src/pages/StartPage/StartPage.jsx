@@ -1,5 +1,6 @@
 // src/pages/StartPage/StartPage.jsx
 import React from 'react';
+import logo from '../../logo.svg'; // Assuming logo is in the src folder
 import { useNavigate } from 'react-router-dom'; // For navigation
 import './StartPage.css';  // Import the custom CSS for StartPage
 
@@ -21,7 +22,7 @@ const StartPage = () => {
 
       {/* Title and Logo Section */}
       <div className="title-container">
-        <img src="/logo.svg" alt="Logo" className="logo" />
+        <img src={logo} alt="Logo" className="logo" />
         <h1 className="title">Welcome to Our Service</h1>
       </div>
 
